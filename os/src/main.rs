@@ -1,7 +1,10 @@
 #![no_std]
 #![no_main]
 #![feature(panic_info_message)]
+mod timer;
 
+trap::enable_timer_interrupt();
+timer::set_next_trigger();
 use core::arch::global_asm;
 
 #[macro_use]
@@ -36,3 +39,5 @@ pub fn rust_main() -> ! {
     task::run_first_task();
     panic!("Unreachable in rust_main!");
 }
+
+
