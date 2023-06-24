@@ -71,3 +71,11 @@ macro_rules! println {
         print(format_args!(concat!($fmt, "\n") $(, $($arg)+)?));
     }
 }
+use core::arch::global_asm;
+
+global_asm!(include_str!("entry.asm"));
+
+#[no_mangle]
+pub fn rust_main() -> ! {
+    loop{};
+}
